@@ -18,6 +18,6 @@ public class AttackMove : BattleMove
         target.hp -= damage;
     }
 
-    public override bool animationFinished() => 
+    public override bool animationFinished() =>
         caster.animationFinished() && target.animationFinished();
 }

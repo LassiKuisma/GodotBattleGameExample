@@ -1,6 +1,6 @@
 public class AttackAbility : Ability
 {
-    public override bool isValidTarget(Character target, Character caster) => 
+    public override bool isValidTarget(Character target, Character caster) =>
         caster.team != target.team;
 
     public override string abilityName() => "Basic attack";

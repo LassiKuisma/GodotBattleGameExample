@@ -1,6 +1,9 @@
 public class SkipMove : BattleMove
 {
-    public SkipMove() { }
+    public SkipMove() 
+    {
+        
+    }
 
     public override void performAction() => GD.Print("Skipping");
 

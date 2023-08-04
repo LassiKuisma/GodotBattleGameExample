@@ -4,7 +4,7 @@ public class SkipAbility : Ability
 
     public override string abilityName() => "Skip move";
 
-    public override BattleMove intoMove(Character caster, List<Character> targets) => 
+    public override BattleMove intoMove(Character caster, List<Character> targets) =>
         new SkipMove();
 
     public override string shortName() => "skip";

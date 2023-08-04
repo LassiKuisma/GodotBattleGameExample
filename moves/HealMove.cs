@@ -23,6 +23,6 @@ public class HealMove : BattleMove
         }
     }
 
-    public override bool animationFinished() => 
+    public override bool animationFinished() =>
         caster.animationFinished() && target.animationFinished();
 }

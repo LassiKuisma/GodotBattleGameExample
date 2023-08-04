@@ -1,7 +1,7 @@
 public class BossAttackMove : BattleMove
 {
     public Character caster;
-    List<Character> targets;
+    private List<Character> targets;
 
     private int damage = 35;
 
