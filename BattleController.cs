@@ -5,7 +5,7 @@ public partial class BattleController : Node
     private List<BattleMove> moveQueue = new();
     private BattleMove currentMove = null;
 
-    private Timer moveTimer = new Timer();
+    private Timer moveTimer = new();
     private bool forceSkipMove = false;
 
     private double maxTimePerMove = 5.0;
