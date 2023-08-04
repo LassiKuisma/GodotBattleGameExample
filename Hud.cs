@@ -1,7 +1,3 @@
-using Godot;
-using System;
-using System.Collections.Generic;
-
 public partial class Hud : Control
 {
     private VBoxContainer primaryButtonContainer;
@@ -99,10 +95,7 @@ public partial class Hud : Control
         this.secondaryButtonContainer.Visible = false;
     }
 
-    public void setEnergyLabelText(string text)
-    {
-        this.energyLabel.Text = text;
-    }
+    public void setEnergyLabelText(string text) => this.energyLabel.Text = text;
 
     public Label createHpDisplay(string characterName)
     {

@@ -1,17 +1,11 @@
 public static class AbilityUtil
 {
-    public static Ability getAbility(string name)
-    {
-        switch (name)
+    public static Ability getAbility(string name) =>
+        name switch
         {
-            case "attack":
-                return new AttackAbility();
-            case "boss_attack":
-                return new BossAttackAbility();
-            case "heal":
-                return new HealAbility();
-            default:
-                return null;
-        }
-    }
+            "attack" => new AttackAbility(),
+            "boss_attack" => new BossAttackAbility(),
+            "heal" => new HealAbility(),
+            _ => null
+        };
 }

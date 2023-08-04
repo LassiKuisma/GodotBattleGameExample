@@ -1,7 +1,3 @@
-using Godot;
-using System;
-using System.Collections.Generic;
-
 public partial class Character : Node2D
 {
     [Export]
@@ -32,15 +28,9 @@ public partial class Character : Node2D
     private AnimationPlayer animation;
     private bool isAnimationFinished = false;
 
-    public bool hasNextMove()
-    {
-        return this.nextMove != null;
-    }
+    public bool hasNextMove() => this.nextMove != null;
 
-    public BattleMove getNextMove()
-    {
-        return this.nextMove;
-    }
+    public BattleMove getNextMove() => this.nextMove;
 
     public void setNextMove(BattleMove move)
     {
@@ -121,10 +111,7 @@ public partial class Character : Node2D
         this.border.Visible = true;
     }
 
-    public void hideBorder()
-    {
-        this.border.Visible = false;
-    }
+    public void hideBorder() => this.border.Visible = false;
 
     public void playAnimation(string animationName)
     {
@@ -133,8 +120,5 @@ public partial class Character : Node2D
         this.animation.Play(animationName);
     }
 
-    public bool animationFinished()
-    {
-        return this.isAnimationFinished;
-    }
+    public bool animationFinished() => this.isAnimationFinished;
 }

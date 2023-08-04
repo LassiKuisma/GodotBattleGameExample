@@ -1,7 +1,3 @@
-using Godot;
-using System;
-using System.Collections.Generic;
-
 public partial class BattleController : Node
 {
     private List<Character> characters = new();
@@ -9,7 +5,7 @@ public partial class BattleController : Node
     private List<BattleMove> moveQueue = new();
     private BattleMove currentMove = null;
 
-    private Timer moveTimer = new Timer();
+    private Timer moveTimer = new();
     private bool forceSkipMove = false;
 
     private double maxTimePerMove = 5.0;
@@ -56,10 +52,7 @@ public partial class BattleController : Node
         }
     }
 
-    private void timerReady()
-    {
-        forceSkipMove = true;
-    }
+    private void timerReady() => forceSkipMove = true;
 
     private List<Character> GetCharactersInBattle()
     {
@@ -68,12 +61,8 @@ public partial class BattleController : Node
         var characters = new List<Character>();
 
         foreach (var child in children)
-        {
-            if (child is Character)
-            {
-                characters.Add((Character)child);
-            }
-        }
+            if (child is Character character)
+                characters.Add(character);
 
         return characters;
     }

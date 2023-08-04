@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 public abstract class Ability
 {
     public abstract bool isValidTarget(Character target, Character caster);

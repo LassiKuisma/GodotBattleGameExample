@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using Godot;
-
 public class AttackMove : BattleMove
 {
     public Character caster;
@@ -21,8 +18,6 @@ public class AttackMove : BattleMove
         target.hp -= damage;
     }
 
-    public override bool animationFinished()
-    {
-        return caster.animationFinished() && target.animationFinished();
-    }
+    public override bool animationFinished() =>
+        caster.animationFinished() && target.animationFinished();
 }

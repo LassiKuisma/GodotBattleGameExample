@@ -1,17 +1,9 @@
-using System.Collections.Generic;
-using Godot;
-
 public class HealAbility : Ability
 {
-    public override string abilityName()
-    {
-        return "Heal";
-    }
+    public override string abilityName() => "Heal";
 
-    public override bool isValidTarget(Character target, Character caster)
-    {
-        return target.team == caster.team && target != caster;
-    }
+    public override bool isValidTarget(Character target, Character caster) =>
+        target.team == caster.team && target != caster;
 
     public override BattleMove intoMove(Character caster, List<Character> targets)
     {
@@ -23,8 +15,5 @@ public class HealAbility : Ability
         return new HealMove(caster, targets[0]);
     }
 
-    public override string shortName()
-    {
-        return "heal";
-    }
+    public override string shortName() => "heal";
 }
