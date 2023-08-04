@@ -61,12 +61,8 @@ public partial class BattleController : Node
         var characters = new List<Character>();
 
         foreach (var child in children)
-        {
-            if (child is Character)
-            {
-                characters.Add((Character)child);
-            }
-        }
+            if (child is Character character)
+                characters.Add(character);
 
         return characters;
     }
