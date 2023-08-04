@@ -6,5 +6,7 @@ public abstract class Ability
 
     public abstract string abilityName();
 
+    public abstract string shortName();
+
     public abstract BattleMove intoMove(Character caster, List<Character> targets);
 }

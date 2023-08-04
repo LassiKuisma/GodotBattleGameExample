@@ -25,7 +25,9 @@ public partial class Character : Node2D
     public float energy;
 
     [Export]
-    public int hp = 100;
+    public int maxHp = 100;
+
+    public int hp;
 
     private AnimationPlayer animation;
     private bool isAnimationFinished = false;
@@ -51,25 +53,25 @@ public partial class Character : Node2D
         this.nextMove = null;
         displayRedBorder();
 
-        var movesAndTargets = new Dictionary<Ability, List<Character>>();
+        var movesAndTargets = new Dictionary<string, (Ability, List<Character>)>();
 
-        foreach (var move in this.knownAbilities)
+        foreach (var ability in this.knownAbilities)
         {
             var targets = new List<Character>();
             foreach (var character in characters)
             {
-                if (move.isValidTarget(character, this))
+                if (ability.isValidTarget(character, this))
                 {
                     targets.Add(character);
                 }
             }
 
-            movesAndTargets.Add(move, targets);
+            movesAndTargets.Add(ability.shortName(), (ability, targets));
         }
 
         if (movesAndTargets.Count == 0)
         {
-            movesAndTargets.Add(new SkipAbility(), new List<Character> { this });
+            movesAndTargets.Add("skip", (new SkipAbility(), new List<Character> { this }));
         }
 
         this.brain.displayMoveOptions(movesAndTargets, this);
@@ -77,6 +79,8 @@ public partial class Character : Node2D
 
     public override void _Ready()
     {
+        this.hp = maxHp;
+
         if (this.brain == null)
         {
             GD.Print("Error! Brain not found!");

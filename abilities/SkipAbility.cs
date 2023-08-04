@@ -17,4 +17,9 @@ public class SkipAbility : Ability
     {
         return new SkipMove();
     }
+
+    public override string shortName()
+    {
+        return "skip";
+    }
 }

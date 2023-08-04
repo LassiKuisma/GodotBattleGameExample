@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public partial class Brain : Node
 {
     public virtual void displayMoveOptions(
-        Dictionary<Ability, List<Character>> availableAbilitiesAndTargets,
+        Dictionary<string, (Ability, List<Character>)> availableAbilitiesAndTargets,
         Character me
     )
     {

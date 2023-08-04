@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ccskc8m5itdws"]
+[gd_scene load_steps=8 format=3 uid="uid://ccskc8m5itdws"]
 
 [ext_resource type="Script" path="res://Character.cs" id="1_5qy2h"]
 [ext_resource type="Texture2D" uid="uid://du2i850ctoy8o" path="res://icon.svg" id="2_valoq"]
@@ -35,9 +35,41 @@ tracks/0/keys = {
 "values": [Vector2(0, 0), Vector2(0, 20), Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_6tvae"]
+resource_name = "get_healed"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.3, 0.55, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_os8sg"]
+resource_name = "cast_heal"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.3, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.785398, 0.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_652me"]
 _data = {
 "attack_animation": SubResource("Animation_6r8n8"),
+"cast_heal": SubResource("Animation_os8sg"),
+"get_healed": SubResource("Animation_6tvae"),
 "take_damage": SubResource("Animation_u8r02")
 }
 

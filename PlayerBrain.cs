@@ -8,7 +8,7 @@ public partial class PlayerBrain : Brain
     public Hud hud;
 
     public override void displayMoveOptions(
-        Dictionary<Ability, List<Character>> availableAbilitiesAndTargets,
+        Dictionary<string, (Ability, List<Character>)> availableAbilitiesAndTargets,
         Character me
     )
     {
@@ -16,10 +16,8 @@ public partial class PlayerBrain : Brain
         this.hud.setEnergyLabelText(energy);
 
         var buttons = new List<(string, string, List<(string, Action)>)>();
-        foreach (var entry in availableAbilitiesAndTargets)
+        foreach (var (_, (ability, targets)) in availableAbilitiesAndTargets)
         {
-            var ability = entry.Key;
-            var targets = entry.Value;
             if (targets.Count == 0)
             {
                 continue;
