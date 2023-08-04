@@ -10,15 +10,15 @@ public partial class Character : Node2D
     [Export]
     public string characterName;
 
-    private BattleMove nextMove;
+    private Ability nextMove;
 
     [Export]
     public Brain brain;
 
     [Export]
-    public Godot.Collections.Array<string> moveNames = new();
+    public Godot.Collections.Array<string> abilityNames = new();
 
-    private List<BattleMove> knownMoves = new();
+    private List<Ability> knownAbilities = new();
 
     private Line2D border;
 
@@ -29,12 +29,12 @@ public partial class Character : Node2D
         return this.nextMove != null;
     }
 
-    public BattleMove getNextMove()
+    public Ability getNextMove()
     {
         return this.nextMove;
     }
 
-    public void setNextMove(BattleMove move)
+    public void setNextMove(Ability move)
     {
         this.nextMove = move;
         displayGreenBorder();
@@ -45,9 +45,9 @@ public partial class Character : Node2D
         this.nextMove = null;
         displayRedBorder();
 
-        var movesAndTargets = new Dictionary<BattleMove, List<Character>>();
+        var movesAndTargets = new Dictionary<Ability, List<Character>>();
 
-        foreach (var move in this.knownMoves)
+        foreach (var move in this.knownAbilities)
         {
             var targets = new List<Character>();
             foreach (var character in characters)
@@ -63,7 +63,7 @@ public partial class Character : Node2D
 
         if (movesAndTargets.Count == 0)
         {
-            movesAndTargets.Add(new EmptyMove(), new List<Character> { this });
+            movesAndTargets.Add(new SkipAbility(), new List<Character> { this });
         }
 
         this.brain.displayMoveOptions(movesAndTargets, this);
@@ -79,16 +79,16 @@ public partial class Character : Node2D
         this.border = GetNode<Line2D>("Border");
         this.border.Visible = false;
 
-        foreach (var moveName in this.moveNames)
+        foreach (var abilityName in this.abilityNames)
         {
-            var move = BattleMoveUtil.getMove(moveName);
-            if (move == null)
+            var ability = AbilityUtil.getAbility(abilityName);
+            if (ability == null)
             {
-                GD.PrintErr("Unknown move: " + moveName);
+                GD.PrintErr("Unknown ability: " + abilityName);
             }
             else
             {
-                this.knownMoves.Add(move);
+                this.knownAbilities.Add(ability);
             }
         }
     }

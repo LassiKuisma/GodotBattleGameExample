@@ -1,11 +1,11 @@
-public static class BattleMoveUtil
+public static class AbilityUtil
 {
-    public static BattleMove getMove(string name)
+    public static Ability getAbility(string name)
     {
         switch (name)
         {
             case "attack":
-                return new AttackMove();
+                return new AttackAbility();
             default:
                 return null;
         }

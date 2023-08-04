@@ -6,8 +6,8 @@ public partial class BattleController : Node
 {
     private List<Character> characters = new();
 
-    private List<BattleMove> moveQueue = new();
-    private BattleMove currentMove = null;
+    private List<Ability> moveQueue = new();
+    private Ability currentMove = null;
 
     private Timer moveTimer = new Timer();
     private bool forceSkipMove = false;

@@ -16,7 +16,7 @@ position = Vector2(126, 144)
 team = 1
 characterName = "Player"
 brain = NodePath("PlayerBrain")
-moveNames = ["attack"]
+abilityNames = ["attack"]
 
 [node name="PlayerBrain" type="Node" parent="BattleController/PlayerCharacter" node_paths=PackedStringArray("hud")]
 script = ExtResource("3_cdcbc")

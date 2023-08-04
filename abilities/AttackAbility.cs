@@ -1,6 +1,6 @@
 using Godot;
 
-public class AttackMove : BattleMove
+public class AttackAbility : Ability
 {
     public override void performAction()
     {
@@ -17,7 +17,7 @@ public class AttackMove : BattleMove
         return caster.team != target.team;
     }
 
-    public override string moveName()
+    public override string abilityName()
     {
         return "Basic attack";
     }

@@ -1,6 +1,6 @@
 using Godot;
 
-public class EmptyMove : BattleMove
+public class SkipAbility : Ability
 {
     public override void performAction()
     {
@@ -17,7 +17,7 @@ public class EmptyMove : BattleMove
         return true;
     }
 
-    public override string moveName()
+    public override string abilityName()
     {
         return "Skip move";
     }
