@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bcetflr4vosfh"]
+[gd_scene load_steps=9 format=3 uid="uid://bcetflr4vosfh"]
 
 [ext_resource type="PackedScene" uid="uid://briwxbxq54n8u" path="res://hud.tscn" id="1_gm5cs"]
 [ext_resource type="Script" path="res://BattleController.cs" id="1_oijy3"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://deq6x5kaor1o6" path="res://brain.tscn" id="4_4yh7k"]
 [ext_resource type="Script" path="res://FriendlyAiBrain.cs" id="6_dosy4"]
 [ext_resource type="Script" path="res://BossBrain.cs" id="7_mp2ly"]
+[ext_resource type="Script" path="res://Brain.cs" id="8_octdh"]
 
 [node name="Main" type="Node2D"]
 
@@ -39,13 +40,23 @@ abilityNames = ["attack", "heal"]
 [node name="FriendlyAiBrain" parent="BattleController/Friend" instance=ExtResource("4_4yh7k")]
 script = ExtResource("6_dosy4")
 
-[node name="Enemy" parent="BattleController" node_paths=PackedStringArray("brain") instance=ExtResource("2_0sxi7")]
+[node name="Boss" parent="BattleController" node_paths=PackedStringArray("brain") instance=ExtResource("2_0sxi7")]
 position = Vector2(835, 425)
 team = 2
-characterName = "Enemy"
-brain = NodePath("Brain")
+characterName = "Boss"
+brain = NodePath("BossBrain")
 abilityNames = ["boss_attack"]
 maxHp = 500
 
-[node name="Brain" parent="BattleController/Enemy" instance=ExtResource("4_4yh7k")]
+[node name="BossBrain" parent="BattleController/Boss" instance=ExtResource("4_4yh7k")]
 script = ExtResource("7_mp2ly")
+
+[node name="Enemy" parent="BattleController" node_paths=PackedStringArray("brain") instance=ExtResource("2_0sxi7")]
+position = Vector2(679, 496)
+team = 2
+characterName = "Enemy #1"
+brain = NodePath("Dummy")
+abilityNames = ["attack"]
+
+[node name="Dummy" type="Node" parent="BattleController/Enemy"]
+script = ExtResource("8_octdh")
