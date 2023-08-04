@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bcetflr4vosfh"]
+[gd_scene load_steps=8 format=3 uid="uid://bcetflr4vosfh"]
 
 [ext_resource type="PackedScene" uid="uid://briwxbxq54n8u" path="res://hud.tscn" id="1_gm5cs"]
 [ext_resource type="Script" path="res://BattleController.cs" id="1_oijy3"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://PlayerBrain.cs" id="3_cdcbc"]
 [ext_resource type="PackedScene" uid="uid://deq6x5kaor1o6" path="res://brain.tscn" id="4_4yh7k"]
 [ext_resource type="Script" path="res://FriendlyAiBrain.cs" id="6_dosy4"]
+[ext_resource type="Script" path="res://BossBrain.cs" id="7_mp2ly"]
 
 [node name="Main" type="Node2D"]
 
@@ -43,6 +44,8 @@ position = Vector2(835, 425)
 team = 2
 characterName = "Enemy"
 brain = NodePath("Brain")
+abilityNames = ["boss_attack"]
 maxHp = 500
 
 [node name="Brain" parent="BattleController/Enemy" instance=ExtResource("4_4yh7k")]
+script = ExtResource("7_mp2ly")

@@ -6,6 +6,8 @@ public static class AbilityUtil
         {
             case "attack":
                 return new AttackAbility();
+            case "boss_attack":
+                return new BossAttackAbility();
             case "heal":
                 return new HealAbility();
             default:

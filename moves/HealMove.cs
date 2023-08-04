@@ -3,7 +3,7 @@ public class HealMove : BattleMove
     public Character caster;
     public Character target;
 
-    private int amount = 10;
+    private int amount = 40;
 
     public HealMove(Character caster, Character target)
     {
