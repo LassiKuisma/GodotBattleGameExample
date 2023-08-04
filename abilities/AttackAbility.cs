@@ -15,6 +15,11 @@ public class AttackAbility : Ability
 
     public override BattleMove intoMove(Character caster, List<Character> targets)
     {
-        return new AttackMove(caster, targets);
+        if (targets.Count == 0)
+        {
+            return new SkipMove();
+        }
+
+        return new AttackMove(caster, targets[0]);
     }
 }

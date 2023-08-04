@@ -24,6 +24,9 @@ public partial class Character : Node2D
 
     public float energy;
 
+    private AnimationPlayer animation;
+    private bool isAnimationFinished = false;
+
     public bool hasNextMove()
     {
         return this.nextMove != null;
@@ -79,6 +82,12 @@ public partial class Character : Node2D
         this.border = GetNode<Line2D>("Border");
         this.border.Visible = false;
 
+        this.animation = GetNode<AnimationPlayer>("AnimationPlayer");
+        this.animation.AnimationFinished += (_) =>
+        {
+            this.isAnimationFinished = true;
+        };
+
         foreach (var abilityName in this.abilityNames)
         {
             var ability = AbilityUtil.getAbility(abilityName);
@@ -108,5 +117,17 @@ public partial class Character : Node2D
     public void hideBorder()
     {
         this.border.Visible = false;
+    }
+
+    public void playAnimation(string animationName)
+    {
+        this.animation.Stop();
+        this.isAnimationFinished = false;
+        this.animation.Play(animationName);
+    }
+
+    public bool animationFinished()
+    {
+        return this.isAnimationFinished;
     }
 }

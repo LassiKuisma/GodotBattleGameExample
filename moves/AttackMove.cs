@@ -4,21 +4,23 @@ using Godot;
 public class AttackMove : BattleMove
 {
     public Character caster;
-    public List<Character> targets;
+    public Character target;
 
-    public AttackMove(Character caster, List<Character> targets)
+    public AttackMove(Character caster, Character target)
     {
         this.caster = caster;
-        this.targets = targets;
+        this.target = target;
     }
 
     public override void performAction()
     {
         GD.Print("Attack!");
+        caster.playAnimation("attack_animation");
+        target.playAnimation("take_damage");
     }
 
     public override bool animationFinished()
     {
-        return false;
+        return caster.animationFinished() && target.animationFinished();
     }
 }
