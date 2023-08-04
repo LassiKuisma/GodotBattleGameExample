@@ -2,13 +2,7 @@ public class SkipMove : BattleMove
 {
     public SkipMove() { }
 
-    public override void performAction()
-    {
-        GD.Print("Skipping");
-    }
+    public override void performAction() => GD.Print("Skipping");
 
-    public override bool animationFinished()
-    {
-        return true;
-    }
+    public override bool animationFinished() => true;
 }

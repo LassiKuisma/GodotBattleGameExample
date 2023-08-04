@@ -1,14 +1,9 @@
 public class AttackAbility : Ability
 {
-    public override bool isValidTarget(Character target, Character caster)
-    {
-        return caster.team != target.team;
-    }
+    public override bool isValidTarget(Character target, Character caster) => 
+        caster.team != target.team;
 
-    public override string abilityName()
-    {
-        return "Basic attack";
-    }
+    public override string abilityName() => "Basic attack";
 
     public override BattleMove intoMove(Character caster, List<Character> targets)
     {
@@ -20,8 +15,5 @@ public class AttackAbility : Ability
         return new AttackMove(caster, targets[0]);
     }
 
-    public override string shortName()
-    {
-        return "attack";
-    }
+    public override string shortName() => "attack";
 }

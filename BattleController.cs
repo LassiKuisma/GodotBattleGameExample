@@ -52,10 +52,7 @@ public partial class BattleController : Node
         }
     }
 
-    private void timerReady()
-    {
-        forceSkipMove = true;
-    }
+    private void timerReady() => forceSkipMove = true;
 
     private List<Character> GetCharactersInBattle()
     {
