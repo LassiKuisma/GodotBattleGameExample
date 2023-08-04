@@ -12,6 +12,9 @@ public partial class PlayerBrain : Brain
         Character me
     )
     {
+        string energy = ((int)me.energy).ToString();
+        this.hud.setEnergyLabelText(energy);
+
         var buttons = new List<(string, string, List<(string, Action)>)>();
         foreach (var entry in availableMovesAndTargets)
         {

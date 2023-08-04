@@ -16,6 +16,9 @@ public partial class BattleController : Node
 
     private BattleState state = BattleState.Idle;
 
+    [Export]
+    public float energyPerTurn = 15.0f;
+
     public override void _Ready()
     {
         this.characters = GetCharactersInBattle();
@@ -54,6 +57,7 @@ public partial class BattleController : Node
     {
         if (this.state == BattleState.Idle)
         {
+            startNewTurn();
             promptCharactersToPickMove();
             this.state = BattleState.WaitingForMoves;
             return;
@@ -73,6 +77,14 @@ public partial class BattleController : Node
             {
                 startNextMove();
             }
+        }
+    }
+
+    private void startNewTurn()
+    {
+        foreach (var character in this.characters)
+        {
+            character.energy += this.energyPerTurn;
         }
     }
 

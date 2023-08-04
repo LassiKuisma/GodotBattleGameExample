@@ -7,12 +7,16 @@ public partial class Hud : Control
     private VBoxContainer primaryButtonContainer;
     private VBoxContainer secondaryButtonContainer;
 
+    private Label energyLabel;
+
     public override void _Ready()
     {
         this.primaryButtonContainer = GetNode<VBoxContainer>("Margin/ButtonContainerA");
         this.secondaryButtonContainer = GetNode<VBoxContainer>("Margin/ButtonContainerB");
 
         setPrimaryVisible();
+
+        this.energyLabel = GetNode<Label>("EnergyDisplay/LabelEnergy");
     }
 
     public void setButtons(List<(string, string, List<(string, Action)>)> nestedButtons)
@@ -90,5 +94,10 @@ public partial class Hud : Control
 
         this.primaryButtonContainer.Visible = false;
         this.secondaryButtonContainer.Visible = false;
+    }
+
+    public void setEnergyLabelText(string text)
+    {
+        this.energyLabel.Text = text;
     }
 }

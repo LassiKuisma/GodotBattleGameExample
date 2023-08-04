@@ -22,6 +22,8 @@ public partial class Character : Node2D
 
     private Line2D border;
 
+    public float energy;
+
     public bool hasNextMove()
     {
         return this.nextMove != null;
