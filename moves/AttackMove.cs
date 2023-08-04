@@ -6,6 +6,8 @@ public class AttackMove : BattleMove
     public Character caster;
     public Character target;
 
+    private int damage = 50;
+
     public AttackMove(Character caster, Character target)
     {
         this.caster = caster;
@@ -14,9 +16,9 @@ public class AttackMove : BattleMove
 
     public override void performAction()
     {
-        GD.Print("Attack!");
         caster.playAnimation("attack_animation");
         target.playAnimation("take_damage");
+        target.hp -= damage;
     }
 
     public override bool animationFinished()

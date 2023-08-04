@@ -9,6 +9,8 @@ public partial class Hud : Control
 
     private Label energyLabel;
 
+    private VBoxContainer hpContainer;
+
     public override void _Ready()
     {
         this.primaryButtonContainer = GetNode<VBoxContainer>("Margin/ButtonContainerA");
@@ -17,6 +19,7 @@ public partial class Hud : Control
         setPrimaryVisible();
 
         this.energyLabel = GetNode<Label>("EnergyDisplay/LabelEnergy");
+        this.hpContainer = GetNode<VBoxContainer>("HpContainer");
     }
 
     public void setButtons(List<(string, string, List<(string, Action)>)> nestedButtons)
@@ -99,5 +102,19 @@ public partial class Hud : Control
     public void setEnergyLabelText(string text)
     {
         this.energyLabel.Text = text;
+    }
+
+    public Label createHpDisplay(string characterName)
+    {
+        var hbox = new HBoxContainer();
+        this.hpContainer.AddChild(hbox);
+
+        var label = new Label();
+        label.Text = characterName;
+        hbox.AddChild(label);
+
+        var hpLabel = new Label();
+        hbox.AddChild(hpLabel);
+        return hpLabel;
     }
 }

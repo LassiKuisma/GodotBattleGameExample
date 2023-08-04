@@ -8,8 +8,13 @@
 
 [node name="Main" type="Node2D"]
 
-[node name="BattleController" type="Node" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Hud" parent="CanvasLayer" instance=ExtResource("1_gm5cs")]
+
+[node name="BattleController" type="Node" parent="." node_paths=PackedStringArray("hud")]
 script = ExtResource("1_oijy3")
+hud = NodePath("../CanvasLayer/Hud")
 
 [node name="PlayerCharacter" parent="BattleController" node_paths=PackedStringArray("brain") instance=ExtResource("2_0sxi7")]
 position = Vector2(126, 144)
@@ -35,9 +40,6 @@ position = Vector2(835, 425)
 team = 2
 characterName = "Enemy"
 brain = NodePath("Brain")
+hp = 500
 
 [node name="Brain" parent="BattleController/Enemy" instance=ExtResource("4_4yh7k")]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Hud" parent="CanvasLayer" instance=ExtResource("1_gm5cs")]

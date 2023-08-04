@@ -24,6 +24,9 @@ public partial class Character : Node2D
 
     public float energy;
 
+    [Export]
+    public int hp = 100;
+
     private AnimationPlayer animation;
     private bool isAnimationFinished = false;
 

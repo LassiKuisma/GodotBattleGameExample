@@ -19,6 +19,11 @@ public partial class BattleController : Node
     [Export]
     public float energyPerTurn = 15.0f;
 
+    [Export]
+    public Hud hud;
+
+    private List<(Character, Label)> hpLabels = new();
+
     public override void _Ready()
     {
         this.characters = GetCharactersInBattle();
@@ -29,6 +34,26 @@ public partial class BattleController : Node
         moveTimer.Timeout += timerReady;
 
         AddChild(moveTimer);
+
+        createHpLabels();
+        updateHpLabels();
+    }
+
+    private void createHpLabels()
+    {
+        foreach (var character in this.characters)
+        {
+            var label = this.hud.createHpDisplay(character.characterName);
+            this.hpLabels.Add((character, label));
+        }
+    }
+
+    private void updateHpLabels()
+    {
+        foreach (var (character, label) in this.hpLabels)
+        {
+            label.Text = character.hp.ToString();
+        }
     }
 
     private void timerReady()
@@ -130,6 +155,8 @@ public partial class BattleController : Node
 
         this.forceSkipMove = false;
         this.moveTimer.Start();
+
+        updateHpLabels();
     }
 
     private bool isCurrentMoveFinised()
