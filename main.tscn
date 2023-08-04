@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://bcetflr4vosfh"]
+
+[ext_resource type="PackedScene" uid="uid://briwxbxq54n8u" path="res://hud.tscn" id="1_gm5cs"]
+[ext_resource type="Script" path="res://BattleController.cs" id="1_oijy3"]
+[ext_resource type="PackedScene" uid="uid://ccskc8m5itdws" path="res://character.tscn" id="2_0sxi7"]
+[ext_resource type="Script" path="res://PlayerBrain.cs" id="3_cdcbc"]
+[ext_resource type="PackedScene" uid="uid://deq6x5kaor1o6" path="res://brain.tscn" id="4_4yh7k"]
+
+[node name="Main" type="Node2D"]
+
+[node name="BattleController" type="Node" parent="."]
+script = ExtResource("1_oijy3")
+
+[node name="PlayerCharacter" parent="BattleController" node_paths=PackedStringArray("brain") instance=ExtResource("2_0sxi7")]
+position = Vector2(126, 144)
+team = 1
+characterName = "Player"
+brain = NodePath("PlayerBrain")
+
+[node name="PlayerBrain" type="Node" parent="BattleController/PlayerCharacter" node_paths=PackedStringArray("hud")]
+script = ExtResource("3_cdcbc")
+hud = NodePath("../../../CanvasLayer/Hud")
+
+[node name="Friend" parent="BattleController" node_paths=PackedStringArray("brain") instance=ExtResource("2_0sxi7")]
+position = Vector2(716, 159)
+team = 1
+characterName = "Friend"
+brain = NodePath("Brain")
+
+[node name="Brain" parent="BattleController/Friend" instance=ExtResource("4_4yh7k")]
+
+[node name="Enemy" parent="BattleController" node_paths=PackedStringArray("brain") instance=ExtResource("2_0sxi7")]
+position = Vector2(835, 425)
+team = 2
+characterName = "Enemy"
+brain = NodePath("Brain")
+
+[node name="Brain" parent="BattleController/Enemy" instance=ExtResource("4_4yh7k")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Hud" parent="CanvasLayer" instance=ExtResource("1_gm5cs")]

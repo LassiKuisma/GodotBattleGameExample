@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://deq6x5kaor1o6"]
+
+[ext_resource type="Script" path="res://Brain.cs" id="1_qiu77"]
+
+[node name="Brain" type="Node"]
+script = ExtResource("1_qiu77")
