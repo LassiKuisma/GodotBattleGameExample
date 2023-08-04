@@ -9,6 +9,7 @@ public partial class Brain : Node
         Character me
     )
     {
-        me.setNextMove(new SkipAbility());
+        // as a fallback to prevent deadlock, skip move as default
+        me.setNextMove(new SkipMove());
     }
 }

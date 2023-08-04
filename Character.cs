@@ -10,7 +10,7 @@ public partial class Character : Node2D
     [Export]
     public string characterName;
 
-    private Ability nextMove;
+    private BattleMove nextMove;
 
     [Export]
     public Brain brain;
@@ -29,12 +29,12 @@ public partial class Character : Node2D
         return this.nextMove != null;
     }
 
-    public Ability getNextMove()
+    public BattleMove getNextMove()
     {
         return this.nextMove;
     }
 
-    public void setNextMove(Ability move)
+    public void setNextMove(BattleMove move)
     {
         this.nextMove = move;
         displayGreenBorder();

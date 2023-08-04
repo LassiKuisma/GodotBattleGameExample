@@ -1,17 +1,8 @@
+using System.Collections.Generic;
 using Godot;
 
 public class SkipAbility : Ability
 {
-    public override void performAction()
-    {
-        GD.Print("Skipping");
-    }
-
-    public override bool animationFinished()
-    {
-        return true;
-    }
-
     public override bool isValidTarget(Character target, Character caster)
     {
         return true;
@@ -20,5 +11,10 @@ public class SkipAbility : Ability
     public override string abilityName()
     {
         return "Skip move";
+    }
+
+    public override BattleMove intoMove(Character caster, List<Character> targets)
+    {
+        return new SkipMove();
     }
 }
