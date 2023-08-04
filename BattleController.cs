@@ -19,10 +19,13 @@ public partial class BattleController : Node
     public override void _Ready()
     {
         this.characters = GetCharactersInBattle();
+
         moveTimer.Autostart = false;
         moveTimer.OneShot = true;
         moveTimer.WaitTime = maxTimePerMove;
-        moveTimer.Ready += timerReady;
+        moveTimer.Timeout += timerReady;
+
+        AddChild(moveTimer);
     }
 
     private void timerReady()
@@ -61,6 +64,7 @@ public partial class BattleController : Node
         }
         else if (this.state == BattleState.ReadyToStartMove)
         {
+            hideBorderAroundCharacters();
             startNextMove();
         }
         else if (this.state == BattleState.PerformingMove)
@@ -94,14 +98,14 @@ public partial class BattleController : Node
 
     private void startNextMove()
     {
-        this.moveTimer.Start();
-        this.forceSkipMove = false;
-
         if (this.moveQueue.Count == 0)
         {
             // out of moves, get next set from characters
             this.currentMove = null;
             this.state = BattleState.Idle;
+
+            this.forceSkipMove = false;
+            this.moveTimer.Stop();
 
             return;
         }
@@ -111,6 +115,9 @@ public partial class BattleController : Node
 
         this.currentMove.performAction();
         this.state = BattleState.PerformingMove;
+
+        this.forceSkipMove = false;
+        this.moveTimer.Start();
     }
 
     private bool isCurrentMoveFinised()
@@ -121,6 +128,14 @@ public partial class BattleController : Node
         }
 
         return this.forceSkipMove || currentMove.animationFinished();
+    }
+
+    private void hideBorderAroundCharacters()
+    {
+        foreach (var character in characters)
+        {
+            character.hideBorder();
+        }
     }
 
     private enum BattleState

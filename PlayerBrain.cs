@@ -29,7 +29,7 @@ public partial class PlayerBrain : Brain
                     target.characterName,
                     () =>
                     {
-                        selectMove(move, target);
+                        selectMove(me, move, target);
                     }
                 );
             });
@@ -39,9 +39,10 @@ public partial class PlayerBrain : Brain
         this.hud.setButtons(buttons);
     }
 
-    private void selectMove(BattleMove move, Character target)
+    private void selectMove(Character me, BattleMove move, Character target)
     {
         GD.Print("Casting " + move.moveName() + " on " + target.characterName);
+        me.setNextMove(move);
         this.hud.clear();
     }
 }

@@ -20,6 +20,8 @@ public partial class Character : Node2D
 
     private List<BattleMove> knownMoves = new();
 
+    private Line2D border;
+
     public bool hasNextMove()
     {
         return this.nextMove != null;
@@ -32,14 +34,14 @@ public partial class Character : Node2D
 
     public void setNextMove(BattleMove move)
     {
-        // TODO: show some kind of checkmark "I've picked my move"
         this.nextMove = move;
+        displayGreenBorder();
     }
 
     public void promptToPickMove(List<Character> characters)
     {
-        // TODO: display hourglass to show this one is still deciding
         this.nextMove = null;
+        displayRedBorder();
 
         var movesAndTargets = new Dictionary<BattleMove, List<Character>>();
 
@@ -53,6 +55,13 @@ public partial class Character : Node2D
                     targets.Add(character);
                 }
             }
+
+            movesAndTargets.Add(move, targets);
+        }
+
+        if (movesAndTargets.Count == 0)
+        {
+            movesAndTargets.Add(new EmptyMove(), new List<Character> { this });
         }
 
         this.brain.displayMoveOptions(movesAndTargets, this);
@@ -64,6 +73,9 @@ public partial class Character : Node2D
         {
             GD.Print("Error! Brain not found!");
         }
+
+        this.border = GetNode<Line2D>("Border");
+        this.border.Visible = false;
 
         foreach (var moveName in this.moveNames)
         {
@@ -77,5 +89,22 @@ public partial class Character : Node2D
                 this.knownMoves.Add(move);
             }
         }
+    }
+
+    private void displayRedBorder()
+    {
+        this.border.DefaultColor = Colors.Red;
+        this.border.Visible = true;
+    }
+
+    private void displayGreenBorder()
+    {
+        this.border.DefaultColor = Colors.Green;
+        this.border.Visible = true;
+    }
+
+    public void hideBorder()
+    {
+        this.border.Visible = false;
     }
 }

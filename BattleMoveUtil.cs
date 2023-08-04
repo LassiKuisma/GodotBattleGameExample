@@ -2,6 +2,12 @@ public static class BattleMoveUtil
 {
     public static BattleMove getMove(string name)
     {
-        return null;
+        switch (name)
+        {
+            case "attack":
+                return new AttackMove();
+            default:
+                return null;
+        }
     }
 }

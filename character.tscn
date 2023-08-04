@@ -8,3 +8,8 @@ script = ExtResource("1_5qy2h")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_valoq")
+
+[node name="Border" type="Line2D" parent="."]
+points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64, -64, -64, 0, -64)
+width = 2.0
+default_color = Color(0, 1, 0, 1)

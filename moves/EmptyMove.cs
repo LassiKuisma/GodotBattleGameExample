@@ -1,6 +1,11 @@
+using Godot;
+
 public class EmptyMove : BattleMove
 {
-    public override void performAction() { }
+    public override void performAction()
+    {
+        GD.Print("Skipping");
+    }
 
     public override bool animationFinished()
     {
