@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using Godot;
-
 public class SkipAbility : Ability
 {
     public override bool isValidTarget(Character target, Character caster)

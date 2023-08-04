@@ -1,7 +1,3 @@
-using Godot;
-using System;
-using System.Collections.Generic;
-
 public partial class BossBrain : Brain
 {
     public override void displayMoveOptions(

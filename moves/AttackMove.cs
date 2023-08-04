@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using Godot;
-
 public class AttackMove : BattleMove
 {
     public Character caster;

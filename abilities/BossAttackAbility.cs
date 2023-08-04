@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using Godot;
-
 public class BossAttackAbility : Ability
 {
     public override bool isValidTarget(Character target, Character caster)
